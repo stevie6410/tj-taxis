@@ -1,0 +1,27 @@
+<p>
+  drivers works!
+</p>
+
+
+<ul>
+  <li *ngFor="let driver of drivers">
+    <!--<span>{{driver.firstName}} {{driver.lastName}}</span>-->
+    <!--<input type="text" [(ngModel)]="driver.firstName">
+    <input type="text" [(ngModel)]="driver.lastName">
+    <button type="button" (click)="updateDriver(driver)">Update</button>
+    <button type="button" (click)="deleteDriver(driver)">Delete</button>-->
+
+    <driver-form [initialValue]="driver" #driverForm></driver-form>
+
+    <button type="button" (click)="updateDriver(driver.$key, driverForm.value)">Update</button>
+    <button type="button" (click)="deleteDriver(driver)">Delete</button>
+  </li>
+</ul>
+
+<form class="form-inline" role="form">
+
+  <input type="text" [(ngModel)]="newDriver.firstName" name="firstName" class="form-control" id="" placeholder="First Name">
+  <input type="text" [(ngModel)]="newDriver.lastName" name="lastName" class="form-control" id="" placeholder="Last Name">
+
+  <button type="button" class="btn btn-primary" (click)="addDriver()">Add Driver</button>
+</form>

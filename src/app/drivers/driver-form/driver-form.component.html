@@ -1,0 +1,15 @@
+<form [formGroup]="form" autocomplete="off" novalidate #driverForm>
+  <fieldset>
+    <legend>Driver</legend>
+    <div class="form-field">
+      <label>First Name</label>
+      <input name="firstName" formControlName="firstName">
+      <div class="field-error-message" *ngIf="isErrorVisible('firstName', 'required')">field is required</div>
+    </div>
+    <div class="form-field">
+      <label>Last Name</label>
+      <input name="lastName" formControlName="lastName">
+      <div class="field-error-message" *ngIf="isErrorVisible('lastName', 'required')">field is required</div>
+    </div>
+  </fieldset>
+</form>

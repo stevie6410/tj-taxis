@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Operators</div>
+  <div class="panel-body">
+    <p>Manage operators here...</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-hover table-condensed table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let op of operators">
+        <td>{{op.firstName}}</td>
+        <td>{{op.lastName}}</td>
+        <td>{{op.phoneNumber}}</td>
+        <td>
+          <button class="btn btn-primary  btn-xs">Edit</button>
+          <button class="btn btn-danger btn-xs" (click)="deleteOperator(op)">Delete</button>
+        </td>
+      </tr> 
+    </tbody>
+  </table>
+</div>
+
+<button type="button" class="btn btn-success" [routerLink]="['add']"></button>
+
+
+<div class="panel-body">
+  <form class="form-inline" role="form">
+    <legend>New Operator</legend>
+    <input type="text" [(ngModel)]="newOperator.firstName" name="firstName" class="form-control" id="" placeholder="First Name">
+    <input type="text" [(ngModel)]="newOperator.lastName" name="lastName" class="form-control" id="" placeholder="Last Name">
+    <input type="text" [(ngModel)]="newOperator.phoneNumber" name="phoneNumber" class="form-control" id="" placeholder="Phone Number">
+
+    <button type="button" class="btn btn-primary" (click)="addOperator()">Add Operator</button>
+  </form>
+</div>
