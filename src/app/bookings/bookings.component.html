@@ -1,44 +1,52 @@
-<p>
-  bookings works!
-</p>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+  <div class="panel-body">
+    <p>Text goes here...</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-hover table-striped table-condensed table-responsive">
+    <thead>
+      <tr>
+        <th>Commands</th>
+        <th>Id</th>
+        <th>Customer Name</th>
+        <th>Pickup Number</th>
+        <th>Pickup Postcode</th>
+        <th>Pickup Address</th>
+        <th>Destination Number</th>
+        <th>Destination Postcode</th>
+        <th>Destination Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bk of bookings" (click)="selectionChanged(bk)">
+        <td>
+          <button type="button" class="btn btn-primary btn-xs" (click)="geoCode(bk.destAddressNumber, bk.destPostcode)">Geocode</button>
+          <button type="button" class="btn btn-primary btn-xs" (click)="updatePickupAddress(bk)">Update Pickup Address</button>
+          <button type="button" class="btn btn-primary btn-xs" [routerLink]="[bk.$key]">Edit</button>
+        </td>
+        <td>{{bk.$key}}</td>
+        <td>{{bk.customerName}}</td>
+        <td>{{bk.pickupAddressNumber}}</td>
+        <td>{{bk.pickupPostcode}}</td>
+        <td>{{bk.pickupAddress}}</td>
+        <td>{{bk.destAddressNumber}}</td>
+        <td>{{bk.destPostcode}}</td>
+        <td>{{bk.destAddress}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
-<table class="table table-hover table-striped table-condensed table-responsive">
-  <thead>
-    <tr>
-      <th>Commands</th>
-      <th>Id</th>
-      <th>Customer Name</th>
-      <th>Pickup Number</th>
-      <th>Pickup Postcode</th>
-      <th>Pickup Address</th>
-      <th>Destination Number</th>
-      <th>Destination Postcode</th>
-      <th>Destination Address</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let bk of bookings" (click)="selectionChanged(bk)">
-      <td>
-        <button type="button" class="btn btn-primary btn-sm" (click)="geoCode(bk.destAddressNumber, bk.destPostcode)">Geocode</button>
-        <button type="button" class="btn btn-primary btn-sm" (click)="updatePickupAddress(bk)">Update Pickup Address</button>
-      </td>
-      <td>{{bk.$key}}</td>
-      <td>{{bk.customerName}}</td>
-      <td>{{bk.pickupAddressNumber}}</td>
-      <td>{{bk.pickupPostcode}}</td>
-      <td>{{bk.pickupAddress}}</td>
-      <td>{{bk.destAddressNumber}}</td>
-      <td>{{bk.destPostcode}}</td>
-      <td>{{bk.destAddress}}</td>
-    </tr>
-  </tbody>
-</table>
+
 
 
 <div class="well well-sm">
   <input type="text" placeholder="Address" class="btn-address" [(ngModel)]="address">
-  <button class="btn btn-primary btn-sm" (click)="addressSearch(address)">Geocode</button>
+  <button class="btn btn-primary btn-sm" (click)="placeSearch(address)">Geocode</button>
 </div>
 
 
@@ -48,6 +56,6 @@
   <h3>{{selectedBooking.$key}}</h3>
 </div>
 
-
+<router-outlet></router-outlet>
 
 <!--<app-booking-detail [booking]="selectedBooking"></app-booking-detail>-->

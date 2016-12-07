@@ -20,6 +20,11 @@ export class BookingService {
     return this.db.list(this.fbEntityName);
   }
 
+  getBooking(id: string): Observable<Booking>{
+    var query:string = this.fbEntityName + '/' + id;
+    return this.db.object(query);
+  }
+
   addBooking(booking: Booking): any {
     this.db.list(this.fbEntityName).push(booking);
   }

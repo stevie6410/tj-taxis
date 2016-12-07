@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
+import { BookingService } from '../../shared/service/booking.service';
 import { Booking } from '../../shared/model/booking';
 
 @Component({
@@ -11,7 +13,15 @@ export class BookingDetailComponent implements OnInit {
 
   @Input() booking: Booking;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private bookingService: BookingService) {
+    this.route.params
+      .switchMap((params: Params) => this.bookingService.getBooking(params['id']))
+      .subscribe(
+        (booking: Booking) => {
+          this.booking = booking;
+        }
+      );
+  }
 
   ngOnInit() {
   }

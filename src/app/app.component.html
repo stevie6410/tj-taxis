@@ -12,10 +12,10 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li class="active"><a [routerLink]="['']">Home</a></li>
-        <li><a [routerLink]="['/home']">Dashboard</a></li>
+        <li class="active"><a [routerLink]="['']">Dashboard</a></li>
         <li><a [routerLink]="['/drivers']">Drivers</a></li>
         <li><a [routerLink]="['/operators']">Operators</a></li>
+        <li><a [routerLink]="['/bookings']">Bookings</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -31,9 +31,6 @@
   </div>
 </nav>
 
-
-<div class="container">
+<div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
-
-<app-bookings></app-bookings>

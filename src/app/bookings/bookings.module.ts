@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BookingsComponent } from './bookings.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-import { AgmCoreModule } from 'angular2-google-maps/core';
+import { Route, RouterModule } from '@angular/router';
 
 import { BookingService } from '../shared/service/booking.service';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
@@ -16,9 +14,7 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyACWmAKhbQkLQC6oY148RNARLquRaYaZmw'
-    })
+    RouterModule
   ],
   declarations: [
     BookingsComponent,
@@ -32,3 +28,11 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
   ]
 })
 export class BookingsModule { }
+
+export const bookingsRoutes: Route[] = [
+  {
+    path: 'bookings', component: BookingsComponent, children: [
+      { path: ':id', component: BookingDetailComponent }
+    ]
+  }
+];

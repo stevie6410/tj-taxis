@@ -2,7 +2,3 @@
   <h3>Selected Booking: {{booking.$key}}</h3>
 </div>
 
-<sebm-google-map *ngIf="booking" [latitude]="booking.destAddressNumber" [longitude]="booking.pickupAddressNumber">
-  <sebm-google-map-marker [latitude]="booking.destAddressNumber" [longitude]="booking.pickupAddressNumber"></sebm-google-map-marker>
-</sebm-google-map>
-
