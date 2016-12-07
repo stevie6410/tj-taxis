@@ -1,0 +1,23 @@
+
+<form class="form-horizontal" [formGroup]="form" autocomplete="off" novalidate #bookingForm>
+  <fieldset>
+    <legend>Booking Detail</legend>
+
+    <div class="form-group form-group-sm">
+      <label class="col-lg-3 control-label">Destination Address</label>
+      <div class="col-lg-9">
+        <input class="form-control" name="destAddress" formControlName="destAddress">
+        <div class="field-error-message text-danger" *ngIf="isErrorVisible('destAddress', 'required')">field is required</div>
+      </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+      <label class="col-lg-3 control-label">Pickup Address</label>
+      <div class="col-lg-9">
+        <input class="form-control" name="pickupAddress" formControlName="pickupAddress">
+        <div class="field-error-message text-danger" *ngIf="isErrorVisible('pickupAddress', 'required')">field is required</div>
+      </div>
+    </div>
+
+  </fieldset>
+</form>

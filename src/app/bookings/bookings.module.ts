@@ -7,6 +7,8 @@ import { Route, RouterModule } from '@angular/router';
 
 import { BookingService } from '../shared/service/booking.service';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
+import { BookingDetailMapComponent } from './booking-detail-map/booking-detail-map.component';
+import { BookingDetailFormComponent } from './booking-detail-form/booking-detail-form.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
   ],
   declarations: [
     BookingsComponent,
-    BookingDetailComponent
+    BookingDetailComponent,
+    BookingDetailMapComponent,
+    BookingDetailFormComponent
   ],
   providers: [
     BookingService
@@ -30,9 +34,6 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
 export class BookingsModule { }
 
 export const bookingsRoutes: Route[] = [
-  {
-    path: 'bookings', component: BookingsComponent, children: [
-      { path: ':id', component: BookingDetailComponent }
-    ]
-  }
+  { path: 'bookings', component: BookingsComponent },
+  { path: 'bookings/:id', component: BookingDetailComponent }
 ];

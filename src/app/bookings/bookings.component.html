@@ -1,10 +1,6 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <!-- Default panel contents -->
-  <div class="panel-heading">Panel heading</div>
-  <div class="panel-body">
-    <p>Text goes here...</p>
-  </div>
-
+  <div class="panel-heading">Active Bookings</div>
   <!-- Table -->
   <table class="table table-hover table-striped table-condensed table-responsive">
     <thead>
@@ -40,22 +36,9 @@
   </table>
 </div>
 
-
-
-
-
 <div class="well well-sm">
   <input type="text" placeholder="Address" class="btn-address" [(ngModel)]="address">
   <button class="btn btn-primary btn-sm" (click)="placeSearch(address)">Geocode</button>
 </div>
 
-
-<div id="map"></div>
-
-<div *ngIf="selectedBooking">
-  <h3>{{selectedBooking.$key}}</h3>
-</div>
-
-<router-outlet></router-outlet>
-
-<!--<app-booking-detail [booking]="selectedBooking"></app-booking-detail>-->
+<app-booking-detail-map [booking]="selectedBooking"></app-booking-detail-map>
