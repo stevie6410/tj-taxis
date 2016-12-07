@@ -3,40 +3,45 @@ import { Http } from '@angular/http';
 import { Observable, Subject } from 'rxjs/Rx';
 import { AngularFireDatabase, FirebaseRef } from 'angularfire2';
 
-import { Driver } from '../model/driver';
+import { Booking } from '../model/booking';
 
 @Injectable()
 export class BookingService {
 
   fbDb: any;
+  fbEntityName: string = 'bookings';
 
   constructor(private db: AngularFireDatabase, @Inject(FirebaseRef) fb,
     private http: Http) {
     this.fbDb = fb.database().ref();
   }
 
-  allBookings(): Observable<Driver[]> {
-    return this.db.list('drivers');
+  allBookings(): Observable<Booking[]> {
+    return this.db.list(this.fbEntityName);
   }
 
-  addDriver(newDriver: Driver): any {
-    this.db.list('drivers').push(newDriver);
+  addBooking(booking: Booking): any {
+    this.db.list(this.fbEntityName).push(booking);
   }
 
-  deleteDriver(driver: Driver): any {
-    this.db.list('drivers').remove(driver.$key);
+  deleteBooking(Booking: Booking): any {
+    this.db.list(this.fbEntityName).remove(Booking.$key);
   }
 
-  saveDriver(driverId: string, driver: Driver): any {
-    //Create a new object from the driver
-    let driverToSave = Object.assign({}, driver);
-    //Delete the $key from driver to save
-    delete (driverToSave.$key);
+  updateBooking(id: string, changes: any) {
+    this.db.object(this.fbEntityName + '/' + id).update(changes);
+  }
 
-    const driverDbPath: string = 'drivers/' + driverId;
-    console.log("Driver Db Path", driverDbPath);
+  saveBooking(BookingId: string, Booking: Booking): any {
+    //Create a new object from the Booking
+    let BookingToSave = Object.assign({}, Booking);
+    //Delete the $key from Booking to save
+    delete (BookingToSave.$key);
+
+    const BookingDbPath: string = 'Bookings/' + BookingId;
+    console.log("Booking Db Path", BookingDbPath);
     let dataToSave = {};
-    dataToSave[driverDbPath] = driverToSave;
+    dataToSave[BookingDbPath] = BookingToSave;
 
     return this.firebaseUpdate(dataToSave);
   }

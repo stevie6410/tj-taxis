@@ -12,6 +12,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { DriversModule } from './drivers/drivers.module';
 import { OperatorsModule } from './operators/operators.module';
 import { routerConfig } from './router.config';
+import { BookingsModule } from './bookings/bookings.module';
+import { GMapsService } from './shared/service/gmaps.service';
 
 const firebaseAuthConfig = {
   provider: AuthProviders.Google,
@@ -30,9 +32,12 @@ const firebaseAuthConfig = {
     DriversModule,
     OperatorsModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
-    RouterModule.forRoot(routerConfig)
+    RouterModule.forRoot(routerConfig),
+    BookingsModule
   ],
-  providers: [],
+  providers: [
+    GMapsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
